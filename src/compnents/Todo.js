@@ -19,22 +19,27 @@ const Todo = ({ text, todo, toDos, setToDos }) => {
 
   return (
     <li className="list-group-item d-flex justify-content-between align-items-center">
-      <div className="d-flex justify-content-start">
-        <input
-          className="form-check-input me-1"
-          type="checkbox"
-          value=""
-          defaultChecked={todo.completed}
-          onClick={handleCheck}
-        />
+      <div className="d-flex flex-row justify-content-start align-items-center">
+        <div className="p-2">
+          <input
+            className="form-check-input me-5"
+            type="checkbox"
+            value=""
+            defaultChecked={todo.completed}
+            onClick={handleCheck}
+          />
+        </div>
+        <div className="align-self-center">
+          <span
+            className={`${
+              todo.completed ? 'text-decoration-line-through' : ''
+            }`}
+          >
+            {text}
+          </span>
+        </div>
       </div>
-      <div className="d-flex">
-        <p
-          className={`${todo.completed ? 'text-decoration-line-through' : ''}`}
-        >
-          {text}
-        </p>
-      </div>
+
       <div className="d-flex justify-content-end">
         <button type="button" className="btn btn-link" onClick={handleDelete}>
           <FontAwesomeIcon icon={faTrashAlt} color="red" />

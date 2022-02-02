@@ -2,7 +2,6 @@ import React from 'react';
 
 const Form = ({ setInputText, toDos, setToDos, inputText }) => {
   const inputTextHandler = (e) => {
-    console.log(e.target.value);
     setInputText(e.target.value);
   };
 
@@ -16,7 +15,7 @@ const Form = ({ setInputText, toDos, setToDos, inputText }) => {
   };
   return (
     <form>
-      <div className="mb-3 mt-5 row justify-content-center">
+      <div className="mb-5 mt-4 row justify-content-center">
         <div className="col-sm-7 ">
           <input
             value={inputText}
