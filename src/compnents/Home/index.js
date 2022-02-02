@@ -1,9 +1,11 @@
-import React from "react";
+import React from 'react';
+import Main from '../Main';
 
 function index() {
   return (
-    <div className='container text-center'>
-      <h1>Welcome The Dashboad!</h1>
+    <div className="container">
+      <h1>ToDo List</h1>
+      <Main />
     </div>
   );
 }
