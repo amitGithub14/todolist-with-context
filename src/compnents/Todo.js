@@ -1,16 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { TaskContext } from '../context/TaskContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
-const Todo = ({
-  text,
-  todo,
-  toDos,
-  setToDos,
-  setEdit,
-  toEdit,
-  setInputText,
-  setIsEditItem,
-}) => {
+const Todo = ({ todo }) => {
+  const { toDos, setToDos, setEdit, setInputText, setIsEditItem } =
+    useContext(TaskContext);
+
   const handleDelete = () => {
     setToDos(toDos.filter((el) => el.id !== todo.id));
   };
@@ -54,7 +49,7 @@ const Todo = ({
               todo.completed ? 'text-decoration-line-through' : ''
             }`}
           >
-            {text}
+            {todo.text}
           </span>
         </div>
       </div>

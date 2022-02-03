@@ -1,30 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { TaskContext } from '../context/TaskContext';
 import Todo from './Todo';
 
-const TodoList = ({
-  toDos,
-  setToDos,
-  setEdit,
-  toEdit,
-  setInputText,
-  setIsEditItem,
-}) => {
+const TodoList = () => {
+  const { toDos } = useContext(TaskContext);
+
   return (
-    <ul className="list-group">
-      {toDos.map((todo) => (
-        <Todo
-          toDos={toDos}
-          todo={todo}
-          setToDos={setToDos}
-          key={todo.id}
-          text={todo.text}
-          setEdit={setEdit}
-          toEdit={toEdit}
-          setInputText={setInputText}
-          setIsEditItem={setIsEditItem}
-        />
-      ))}
-    </ul>
+    <>
+      {!toDos ? (
+        <div>No List found</div>
+      ) : (
+        <ul className="list-group">
+          {toDos.map((todo) => (
+            <Todo key={todo.id} todo={todo} />
+          ))}
+        </ul>
+      )}
+    </>
   );
 };
 

@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { TaskContext } from '../context/TaskContext';
+const Form = () => {
+  const {
+    setInputText,
+    toDos,
+    setToDos,
+    inputText,
+    toEdit,
+    setEdit,
+    isEditItem,
+    setIsEditItem,
+  } = useContext(TaskContext);
 
-const Form = ({
-  setInputText,
-  toDos,
-  setToDos,
-  inputText,
-  toEdit,
-  setEdit,
-  isEditItem,
-  setIsEditItem,
-}) => {
   const inputTextHandler = (e) => {
     setInputText(e.target.value);
   };

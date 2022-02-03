@@ -1,33 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Form from './Form';
 import TodoList from './TodoList';
-const Main = () => {
-  const [inputText, setInputText] = useState('');
-  const [toDos, setToDos] = useState([]);
-  const [toEdit, setEdit] = useState(false);
-  const [isEditItem, setIsEditItem] = useState(null);
+import TaskContextProvider from '../context/TaskContext';
 
+const Main = () => {
   return (
-    <div>
-      <Form
-        toDos={toDos}
-        setToDos={setToDos}
-        setInputText={setInputText}
-        inputText={inputText}
-        toEdit={toEdit}
-        setEdit={setEdit}
-        isEditItem={isEditItem}
-        setIsEditItem={setIsEditItem}
-      />
-      <TodoList
-        toDos={toDos}
-        setToDos={setToDos}
-        toEdit={toEdit}
-        setEdit={setEdit}
-        setInputText={setInputText}
-        setIsEditItem={setIsEditItem}
-      />
-    </div>
+    <TaskContextProvider>
+      <Form />
+      <TodoList />
+    </TaskContextProvider>
   );
 };
 
