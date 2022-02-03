@@ -1,16 +1,39 @@
 import React from 'react';
 
-const Form = ({ setInputText, toDos, setToDos, inputText }) => {
+const Form = ({
+  setInputText,
+  toDos,
+  setToDos,
+  inputText,
+  toEdit,
+  setEdit,
+  isEditItem,
+  setIsEditItem,
+}) => {
   const inputTextHandler = (e) => {
     setInputText(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setToDos([
-      ...toDos,
-      { text: inputText, completed: false, id: Math.random() * 1000 },
-    ]);
+    if (toEdit) {
+      setToDos(
+        toDos.map((item) => {
+          if (item.id === isEditItem) {
+            return { ...item, text: inputText };
+          }
+          return item;
+        })
+      );
+      setIsEditItem(null);
+      setEdit(false);
+    } else {
+      setToDos([
+        ...toDos,
+        { text: inputText, completed: false, id: Math.random() * 1000 },
+      ]);
+    }
+
     setInputText('');
   };
   return (
@@ -27,10 +50,10 @@ const Form = ({ setInputText, toDos, setToDos, inputText }) => {
         </div>
         <div className="col-sm-2">
           <button
-            className="add btn btn-primary font-weight-bold"
+            className="btn btn-primary font-weight-bold"
             onClick={handleSubmit}
           >
-            Add
+            {toEdit ? 'Edit' : 'Add'}
           </button>
         </div>
       </div>

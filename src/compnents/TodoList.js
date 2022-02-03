@@ -1,7 +1,14 @@
 import React from 'react';
 import Todo from './Todo';
 
-const TodoList = ({ toDos, setToDos }) => {
+const TodoList = ({
+  toDos,
+  setToDos,
+  setEdit,
+  toEdit,
+  setInputText,
+  setIsEditItem,
+}) => {
   return (
     <ul className="list-group">
       {toDos.map((todo) => (
@@ -11,6 +18,10 @@ const TodoList = ({ toDos, setToDos }) => {
           setToDos={setToDos}
           key={todo.id}
           text={todo.text}
+          setEdit={setEdit}
+          toEdit={toEdit}
+          setInputText={setInputText}
+          setIsEditItem={setIsEditItem}
         />
       ))}
     </ul>

@@ -1,9 +1,28 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-const Todo = ({ text, todo, toDos, setToDos }) => {
+import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
+const Todo = ({
+  text,
+  todo,
+  toDos,
+  setToDos,
+  setEdit,
+  toEdit,
+  setInputText,
+  setIsEditItem,
+}) => {
   const handleDelete = () => {
     setToDos(toDos.filter((el) => el.id !== todo.id));
+  };
+
+  const handleEdit = (id) => {
+    setEdit(true);
+    let newEditItem = toDos.find((el) => {
+      return el.id === id;
+    });
+    //console.log(newEditItem);
+    setInputText(newEditItem.text);
+    setIsEditItem(todo.id);
   };
 
   const handleCheck = () => {
@@ -39,11 +58,22 @@ const Todo = ({ text, todo, toDos, setToDos }) => {
           </span>
         </div>
       </div>
-
       <div className="d-flex justify-content-end">
-        <button type="button" className="btn btn-link" onClick={handleDelete}>
-          <FontAwesomeIcon icon={faTrashAlt} color="red" />
-        </button>
+        <div>
+          <button
+            type="button"
+            className="btn btn-link"
+            disabled={todo.completed}
+            onClick={() => handleEdit(todo.id)}
+          >
+            <FontAwesomeIcon icon={faEdit} />
+          </button>
+        </div>
+        <div>
+          <button type="button" className="btn btn-link" onClick={handleDelete}>
+            <FontAwesomeIcon icon={faTrashAlt} color="red" />
+          </button>
+        </div>
       </div>
     </li>
   );
